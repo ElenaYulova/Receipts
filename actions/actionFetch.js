@@ -5,14 +5,19 @@ import {connect} from 'react-redux';
 
 function updateAJAXStorage(info) {
     
-        var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-        var updatePassword;
-        var stringName='YULOVA_FD3_PROJECT';
+        let ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+        let updatePassword = Math.random();;
+        let stringName='YULOVA_FD3_PROJECT';
 
     var refreshData = () => {
+        let searchParams = new URLSearchParams();
+        searchParams.append("f", "LOCKGET");
+        searchParams.append("n", stringName);
+        searchParams.append("p", updatePassword);
+
         isoFetch(ajaxHandlerScript, {
             method: 'post',
-            data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+            body : searchParams,
             headers: {
                 "Accept": "application/json",
             },
@@ -36,9 +41,16 @@ function updateAJAXStorage(info) {
             if ( callresult.error!=undefined ){
             console.log(callresult.error); 
         } else {
+
+            let searchParams = new URLSearchParams();
+        searchParams.append("f", "UPDATE");
+        searchParams.append("n", stringName);
+        searchParams.append("v", JSON.stringify(info));
+        searchParams.append("p", updatePassword);
+
             isoFetch(ajaxHandlerScript, {
                 method: 'post',
-                data : { f : 'UPDATE', n : stringName, v : JSON.stringify(info), p : updatePassword },
+                body : searchParams,
                 headers: {
                     "Accept": "application/json",
                 },

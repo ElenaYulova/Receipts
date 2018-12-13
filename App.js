@@ -2,16 +2,15 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import PagesRouter from './pages/PagesRouter';
-import PagesLinks from './pages/PagesLinks';
 
+import combinedReducer from './redux/reducers.js';
+let store=createStore(combinedReducer);
 ReactDOM.render( 
-  <BrowserRouter>
-    <div>
-      <PagesLinks />
-      <PagesRouter />
-    </div>
-  </BrowserRouter>
+  <Provider store={store}>
+  <PagesRouter />
+</Provider>
 , document.getElementById('container') );

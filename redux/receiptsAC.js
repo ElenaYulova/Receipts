@@ -4,10 +4,15 @@
 const ADD_NEW_RECEIPT='ADD_NEW_RECEIPT';
 const FIND_RECEIPT='FIND_RECEIPT';
 const CHOOSE_RECEIPT='CHOOSE_RECEIPT';
+const CREATE_RECEIPT_LIST = 'CREATE_RECEIPT_LIST';
 
 
-
-
+const create_receipt_list = function (receipts) {
+    return {
+        type: FIND_RECEIPT,
+        receipts: receipts,
+    }
+}
 
 const add_new_receipt = function (receipts) {
     return {
@@ -32,7 +37,7 @@ const choose_receipt = function (receiptId) {
 }
 
 export {
-
+    create_receipt_list, CREATE_RECEIPT_LIST,
     add_new_receipt, ADD_NEW_RECEIPT,
     find_receipt, FIND_RECEIPT,
     choose_receipt, CHOOSE_RECEIPT,

@@ -4,15 +4,15 @@ import ReceiptPage from '../components/complex/ReceiptPage';
 
 import {connect} from 'react-redux';
 
-class Page_Client extends React.PureComponent {
+class Page_Receipt extends React.PureComponent {
           
   render() {
 
-    // раз написано <Route path="/client/:clid" component={Page_Client} />
-    // значит Page_Client получит то что в УРЛе после /client/ под именем props.match.params.clid в виде строки
+    // раз написано <Route path="/receipt/:rcid" component={Page_Receipt} />
+    // значит Page_Receipt получит то что в УРЛе после /receipt/ под именем props.match.params.rcid в виде строки
     let receiptId=parseInt(this.props.match.params.rcid);
 
-    let receiptData=appData.receipts.find( c => c.id==receiptId );
+    let receiptData=this.props.receipts.receipts.find( c => c.id==receiptId );
 
     return (
       <ReceiptPage
@@ -23,5 +23,9 @@ class Page_Client extends React.PureComponent {
   }
 
 }
-    
-export default Page_Client;
+const mapStateToProps = function (state) {
+  return {
+    receipts: state.receipts,
+  };
+};   
+export default connect(mapStateToProps)(Page_Receipt);   
