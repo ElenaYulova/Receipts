@@ -12,6 +12,7 @@ import Page_ChosenReceipts from './Page_ChosenReceipts';
 import Page_Receipt from './Page_Receipt';
 import Page_About from './Page_About';
 
+
 import combinedReducer from '../redux/reducers.js';
 
 import { create_receipt_list } from '../redux/receiptsAC';
@@ -92,11 +93,13 @@ loadData = () => {
       <div>
       <PagesLinks />
         <div>
+          
           <Route path="/receiptlist" component={Page_ReceiptList}/>
           <Route path="/chosenreceipts" component={Page_ChosenReceipts}/>
           <Route path="/" exact component={Page_About}/>
           <Route path="/about" component={Page_About}/>
           <Route path="/receipt/:rcid" component={Page_Receipt} />
+          
         </div>
         </div>
         </BrowserRouter>

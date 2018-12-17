@@ -29,14 +29,20 @@ import ReceiptButton from '../Primitive/ReceiptButton';
         description: this.props.receipt.description,
         imageUrl: this.props.receipt.imageUrl,
         receipt: this.props.receipt,
-        isSelected: this.props.receipt.isSelected || false
+        isSelected: this.props.receipt.isSelected || false,
+        isRemoved:false,
       };
 
       componentWillReceiveProps = (newProps) => {
         console.log("ReceiptListItem id="+this.props.receipt.id+" componentWillReceiveProps");
         this.setState({receipt:newProps.receipt});
       };
-
+      deleteReceipt = () => {
+        this.props.dispatch( delete_receipt(this.props.match.params.lid) );
+        this.setState({
+          isRemoved: true
+        });
+      }
     render() {
         const {name, description, imageUrl} = this.state;
         
@@ -46,8 +52,9 @@ import ReceiptButton from '../Primitive/ReceiptButton';
     <ReceiptImage className="" name={name} imageUrl={imageUrl}></ReceiptImage>
     
     <ReceiptDescription className="" description={description}></ReceiptDescription> 
-    <ReceiptButton title={buttonValue} receiptId={this.props.receipt.id} value = {buttonValue}  buttonOnClick="selection" className={(this.props.isSelected && "receipt-page-button__selected") || "receipt-page-button__non-selected"} name={name} >Добавить в избранное</ReceiptButton>
+    <ReceiptButton title={buttonValue} isSelected = {this.state.isSelected} receiptId={this.props.receipt.id} value = {buttonValue}  buttonOnClick="selection" className={(this.props.isSelected && "receipt-page-button__selected") || "receipt-page-button__non-selected"} name={name} >Добавить в избранное</ReceiptButton>
     <NavLink to={"/receipt/"+this.props.receipt.id} className="">{this.props.receipt.name}</NavLink>
+    <ReceiptButton name={name} title={"Удалить рецепт"} receiptId={this.props.receipt.id} value = {"Удалить рецепт"}  buttonOnClick="delete" className={"receipt-page-button__non-selected"} name={name} >Удалить рецепт</ReceiptButton>
     </div>
  }  
     

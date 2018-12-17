@@ -5,7 +5,7 @@ const ADD_NEW_RECEIPT='ADD_NEW_RECEIPT';
 const FIND_RECEIPT='FIND_RECEIPT';
 const CHOOSE_RECEIPT='CHOOSE_RECEIPT';
 const CREATE_RECEIPT_LIST = 'CREATE_RECEIPT_LIST';
-
+const DELETE_RECEIPT = 'DELETE_RECEIPT';
 
 const create_receipt_list = function (receipts) {
     return {
@@ -14,20 +14,13 @@ const create_receipt_list = function (receipts) {
     }
 }
 
-const add_new_receipt = function (receipts) {
+const add_new_receipt = function (newReceipt) {
     return {
         type: ADD_NEW_RECEIPT,
-        payload: receipt,
+        payload: newReceipt,
     };
 }
 
-const find_receipt = function (receipts) {
-    return {
-        type: FIND_RECEIPT,
-        receipts: receipts,
-        value: findValue,
-    };
-}
 
 const choose_receipt = function (receiptId) {
     return {
@@ -36,9 +29,16 @@ const choose_receipt = function (receiptId) {
     };
 }
 
+const delete_receipt = function (receiptId) {
+    return {
+        type: DELETE_RECEIPT,
+        receiptId: receiptId,
+    };
+}
+
 export {
     create_receipt_list, CREATE_RECEIPT_LIST,
     add_new_receipt, ADD_NEW_RECEIPT,
-    find_receipt, FIND_RECEIPT,
     choose_receipt, CHOOSE_RECEIPT,
+    delete_receipt, DELETE_RECEIPT,
 }

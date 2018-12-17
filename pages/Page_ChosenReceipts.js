@@ -10,18 +10,19 @@ class Page_ReceiptList extends React.PureComponent {
   }
 
   render() {
-    let i = 0;
-    let filteredList = this.state.receipts.map(receipt => {
-      
-      if (receipt.isSelected){
-          i++;
-          return receipt;
+    let selectedReceiptsCnt = 0;
+    let selectedReceiptsList = [];
+    for (let i = 0; i < this.state.receipts.length; i++) {
+      if (this.state.receipts[i].isSelected) {
+        console.log(this.state.receipts[i]);
+        selectedReceiptsCnt++;
+        selectedReceiptsList.push(this.state.receipts[i]);
       }
-      
-  })  
+    }
+    
   
     return ( <div>
-      {(i>0 && <ReceiptList heading = "Список избранных рецептов" receipts = {filteredList}
+      {(selectedReceiptsCnt>0 && <ReceiptList heading = "Список избранных рецептов" receipts = {selectedReceiptsList}
  
       />) || <h2>Тут пока нет рецептов</h2>}
       </div>

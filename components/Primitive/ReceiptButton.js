@@ -10,22 +10,53 @@ class ReceiptButton extends React.PureComponent {
         value: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         type: PropTypes.string,
+        isSelected: PropTypes.bool,
         buttonOnClick: PropTypes.string,
+        inputChangeValue: PropTypes.string,
+        onSearchClicked: PropTypes.func,
+        modalOpen: PropTypes.func,
     };
+    state = {
+        
+        isSelected: this.props.isSelected || false,
+    }
     funcButtonOnClick = () => 
-    { if (this.props.buttonOnClick == "selection"){
-        console.log(this.props.receiptId);
-        this.props.dispatch(choose_receipt(this.props.receiptId));
+    { switch (this.props.buttonOnClick){
+       case "selection": { 
+           let id = this.props.receiptId;
+            console.log(id);
+            this.props.dispatch(choose_receipt(id));
+            this.setState({isSelected: !this.state.isSelected});
+            console.log(this.state);
+            break;
+        }
+        case "search": {
+            this.props.onSearchClicked();
+            break;
+                       
+        }
+        case "modal": {
+            this.props.modalOpen();
+            break;
+        }
+        case "newReceipt": {
+            this.props.receiptFormSubmit();
+            console.log("Отправка формы");
+            break;
+        }
+        default: {
+            console.log("Кнопка не назначена");
+                break;
+            }
+        };      
     }
+ 
         
-        
-    }
-    
     render() {
         
         const value = this.props.value;
         const title = this.props.value;
-    return <button type={this.props.type} onClick = {this.funcButtonOnClick} className="" title={title} value={value} name={name} >{((this.props.isSelected) && "Убрать из избранного") || this.props.children}</button>
+    return <button disabled = {this.props.disabled || false} type={this.props.type} onClick = {this.funcButtonOnClick} className="" title={title} value={value} name={name} >{((this.state.isSelected) && "Убрать из избранного") || this.props.children}</button>
         
  }   
 }

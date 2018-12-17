@@ -37,19 +37,14 @@ export default class ReceiptPage extends React.PureComponent {
         console.log("ReceiptPage id="+this.props.receipt.id+" componentWillReceiveProps");
         this.setState({receipt:newProps.receipt});
       };
-    selectReceipt = () => {
-        this.props.receiptOnSelect(this.props.receipt.id);
-        this.setState({
-            isSelected:!isSelected,
-          });
-    }
+    
     render() {
         const { id, name, components, steps, description, imageUrl} = this.state;
         const buttonValue = (this.state.isSelected && "Убрать из избранного") || "В избранное";
     return <div className="receipt-receipt-page">
     <h1>{name}</h1>
     <ReceiptImage className="" name={name} imageUrl={imageUrl}></ReceiptImage>
-    <ReceiptButton title={buttonValue} value = {buttonValue} onClick={this.selectReceipt} className={(this.state.isSelected && "receipt-page-button__selected") || "receipt-page-button__non-selected"} name={name} >Добавить в избранное</ReceiptButton>
+    <ReceiptButton title={buttonValue} isSelected = {this.state.isSelected} receiptId={id} value = {buttonValue}  buttonOnClick="selection" className={(this.props.isSelected && "receipt-page-button__selected") || "receipt-page-button__non-selected"} name={name} >Добавить в избранное</ReceiptButton>
     <ReceiptDescription className=""  name={name} description={description.trim()}></ReceiptDescription> 
     <ReceiptComponents className="" name={name} components={components.trim()}></ReceiptComponents>  
     <ReceiptSteps className="" name={name} steps={steps}></ReceiptSteps> 
