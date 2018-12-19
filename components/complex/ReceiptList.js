@@ -7,6 +7,8 @@ import ReceiptListItem from'../complex/ReceiptListItem';
 import ReceiptButton from '../Primitive/ReceiptButton';
 import ReceiptInput from '../Primitive/ReceiptInput';
 import NewReceiptModal from './NewReceiptModal'
+import ReceiptPaginator from './ReceiptPaginator';
+import updateAJAXStorage from '../../actions/actionFetch';
 
 // Компонент Список рецептов кулинарной книги. Переиспользуемый
 export default class ReceiptList extends React.PureComponent {
@@ -31,7 +33,7 @@ export default class ReceiptList extends React.PureComponent {
         receipts: this.props.receipts,
         inputChangeValue: " ",
         modal: false,
-
+        pageOfItems: this.props.receipts,
       };
 
 
@@ -39,6 +41,15 @@ export default class ReceiptList extends React.PureComponent {
         console.log("ReceiptList "+this.props.heading+" componentWillReceiveProps");
         this.setState({receipts:newProps.receipts});
       };
+
+    //   componentWillMount() {
+    //     updateAJAXStorage(this.props.receipts);
+    //   }
+
+      onChangePage(pageOfItems) {
+        
+        this.setState({ pageOfItems: pageOfItems });
+    }
       onSearchClicked = () => {
           let filteredReceipts = [];
 
@@ -65,7 +76,7 @@ export default class ReceiptList extends React.PureComponent {
       
 
       render() {
-        let receipts=((this.state.receipts.length>0) && this.state.receipts.map(receipt => {
+        let receipts=((this.state.pageOfItems.length>0) && this.state.pageOfItems.map(receipt => {
             return <ReceiptListItem 
             key={receipt.id} 
             receipt={receipt}
@@ -89,6 +100,7 @@ export default class ReceiptList extends React.PureComponent {
     <ReceiptButton title={"Добавить новый рецепт"} value="Новый рецепт" modalOpen = {this.modalOpen.bind(this)} buttonOnClick={"modal"}>Новый рецепт</ReceiptButton>
     {this.state.modal && <NewReceiptModal modalOpen = {this.modalOpen.bind(this)}></NewReceiptModal>}
     {receipts}
+    <ReceiptPaginator receipts={this.props.receipts} onChangePage={ this.onChangePage.bind(this)} />
     </div>
  }   
 }

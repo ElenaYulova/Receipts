@@ -8,6 +8,22 @@ export default function updateAJAXStorage(info) {
     let updatePassword = Math.random();;
     let stringName='YULOVA_FD3_PROJECT';
 
+   var fetchError = (errorMessage) => { //текст ошибки в консоли при проблеме с получением данных
+        let errString = "Data has not been received";
+        console.error(errString);
+      };
+    
+      var fetchSuccess = (loadedData) => {
+        console.log(loadedData);
+        let receiptsArr = loadedData.result;
+        // console.log(receiptsArr);
+        this.setState({
+          dataReady:true,
+          receipts: receiptsArr,
+        });
+        console.log(this.state);
+      };
+
 var refreshData = () => {
     let searchParams = new URLSearchParams();
     searchParams.append("f", "LOCKGET");
@@ -29,17 +45,17 @@ var refreshData = () => {
                 throw Err; // дальше по цепочке пойдёт отвергнутый промис
             }
             else
-                return lockGetReady; // дальше запускаем загрузку новых данных на бэк
+            {
+                // console.log("Data were prepared")
+                return lockGetReady();} // дальше запускаем загрузку новых данных на бэк
         })
         .catch( (error) => {
-            this.fetchError(error.userMessage||error.message);
+            fetchError("Произошла ошибка при заливке");
         })
     };
 
-    var lockGetReady = (callresult) => {
-        if ( callresult.error!=undefined ){
-        console.log(callresult.error); 
-    } else {
+    var lockGetReady = () => {
+        
 
         let searchParams = new URLSearchParams();
     searchParams.append("f", "UPDATE");
@@ -67,7 +83,7 @@ var refreshData = () => {
             .catch( (error) => {
                 this.fetchError(error.userMessage||error.message);
             })
-    }
+    
 }
 
 refreshData();

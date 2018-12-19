@@ -49,9 +49,10 @@ class NewReceiptForm extends React.PureComponent {
             imageUrl: this.state.imageUrl,
         };
         if (this.state.formIsValid) {
-            console.log(newReceipt);
+            
             
             this.props.dispatch(add_new_receipt(newReceipt));
+            console.log("Receipt was add");
             this.setState({formIsSubmitted: true});
             
         } else {

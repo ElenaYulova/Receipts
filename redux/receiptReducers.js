@@ -15,7 +15,7 @@ function receiptReducer(state=initState, action) {
     switch (action.type) {
         case CREATE_RECEIPT_LIST: {
             let newState={...state};
-            
+            nesState.receipts = action.receipts;
             console.log("новый стейт "+ newState)  ;    
             return newState
         } 
@@ -23,7 +23,7 @@ function receiptReducer(state=initState, action) {
         case ADD_NEW_RECEIPT: {
             
             let newReceiptID = state.receipts[state.receipts.length-1].id + 1;
-            let receipt = {...action.payload, id: newReceiptID};
+            let receipt = {...action.newReceipt, id: newReceiptID};
             
             let newState = {...state, receipts: {...state.receipts, receipt}};
             

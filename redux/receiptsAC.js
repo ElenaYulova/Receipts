@@ -17,7 +17,7 @@ const create_receipt_list = function (receipts) {
 const add_new_receipt = function (newReceipt) {
     return {
         type: ADD_NEW_RECEIPT,
-        payload: newReceipt,
+        newReceipt: newReceipt,
     };
 }
 

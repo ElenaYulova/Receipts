@@ -26,7 +26,7 @@ class PagesRouter extends React.Component{
   }
   state = { //
     dataReady: false, //готовность данных
-    receipts: {}, //собственно список рецептов
+    receiptsList: {}, //собственно список рецептов
   };
 
   fetchError = (errorMessage) => { //текст ошибки в консоли при проблеме с получением данных
@@ -40,7 +40,7 @@ class PagesRouter extends React.Component{
     // console.log(receiptsArr);
     this.setState({
       dataReady:true,
-      receipts: receiptsArr,
+      receiptsList: receiptsArr,
     });
     console.log(this.state);
   };
@@ -83,7 +83,8 @@ loadData = () => {
 
   };
   componentWillMount() {
-    this.props.dispatch( create_receipt_list(this.state.receipts) );
+    this.props.dispatch( create_receipt_list(this.state.receiptsList) )
+    console.log(this.state.receiptsList);
   }
 
   render(){

@@ -4,7 +4,7 @@ import ReceiptList from '../components/complex/ReceiptList';
 
 import {connect} from 'react-redux';
 import { create_receipt_list } from '../redux/receiptsAC';
-
+import updateAJAXStorage from '../actions/actionFetch';
 
 class Page_ReceiptList extends React.PureComponent {
 
@@ -13,6 +13,11 @@ class Page_ReceiptList extends React.PureComponent {
   }
   
 
+
+  componentWillUpdate() {
+   updateAJAXStorage(this.props.receipts);
+   console.log("props to AJAX: "+this.props.receipts);
+    }
   render() {
 
     return (
