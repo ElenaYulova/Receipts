@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import './ReceiptButton.css';
-import { choose_receipt } from '../../redux/receiptsAC';
+import { choose_receipt, delete_receipt } from '../../redux/receiptsAC';
 // Компонент Кнопка кулинарной книги. Переиспользуемый
 class ReceiptButton extends React.PureComponent {
     static propTypes = {
@@ -44,19 +44,27 @@ class ReceiptButton extends React.PureComponent {
             console.log("Отправка формы");
             break;
         }
+        case "delete": {
+            let id = this.props.receiptId;
+            console.log(id);
+            this.props.dispatch(delete_receipt(id));
+            console.log("Удаление рецепта");
+            break;
+        }
         default: {
             console.log("Кнопка не назначена");
                 break;
             }
         };      
     }
+    
  
         
     render() {
         
         const value = this.props.value;
         const title = this.props.value;
-    return <button disabled = {this.props.disabled || false} type={this.props.type} onClick = {this.funcButtonOnClick} className="" title={title} value={value} name={name} >{((this.state.isSelected) && "Убрать из избранного") || this.props.children}</button>
+    return <button className={this.props.className} disabled = {this.props.disabled || false} type={this.props.type} onClick = {this.funcButtonOnClick} className="" title={title} value={value} name={name} >{((this.state.isSelected) && "Убрать из избранного") || this.props.children}</button>
         
  }   
 }

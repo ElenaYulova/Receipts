@@ -1,0 +1,32 @@
+.receipt-receipt-page {
+    position: relative;
+}
+.receipt-receipt-page hr {
+    color: #f2a633;
+    background-color: #f2a633;
+    height: 1px;
+    border: none;
+}
+.receipt-receipt-page button {
+    margin-bottom: 5 px;
+    position: absolute;
+    right: 0;
+    top: 68px;
+}
+
+.receipt-receipt-page img {
+    height: 200px;
+}
+
+@media all and (max-width: 640px) {
+    .receipt-receipt-page h1 {
+        text-align: center;
+        width: 60%;
+    } 
+    .receipt-receipt-page button {
+        margin-bottom: 5 px;
+        margin-top: 5px;
+        position: relative;
+
+    }
+}

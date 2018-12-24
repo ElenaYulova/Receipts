@@ -43,10 +43,15 @@ export default class ReceiptPage extends React.PureComponent {
         const buttonValue = (this.state.isSelected && "Убрать из избранного") || "В избранное";
     return <div className="receipt-receipt-page">
     <h1>{name}</h1>
-    <ReceiptImage className="" name={name} imageUrl={imageUrl}></ReceiptImage>
+    <hr />
     <ReceiptButton title={buttonValue} isSelected = {this.state.isSelected} receiptId={id} value = {buttonValue}  buttonOnClick="selection" className={(this.props.isSelected && "receipt-page-button__selected") || "receipt-page-button__non-selected"} name={name} >Добавить в избранное</ReceiptButton>
+    
+    <ReceiptImage className="" name={name} imageUrl={imageUrl}></ReceiptImage>
+    <hr />
     <ReceiptDescription className=""  name={name} description={description.trim()}></ReceiptDescription> 
+    <hr />
     <ReceiptComponents className="" name={name} components={components.trim()}></ReceiptComponents>  
+    <hr />
     <ReceiptSteps className="" name={name} steps={steps}></ReceiptSteps> 
     
     

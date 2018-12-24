@@ -22,7 +22,8 @@
   position: absolute;
    right: 5px; 
    top: 0;
- 
+    background: #fff;
+    border: none;
 }
 
 .modal__close:hover{

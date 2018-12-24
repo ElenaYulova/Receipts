@@ -1,0 +1,18 @@
+ button {
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius:  0;
+    padding: 5px;
+    background: #f5c987;
+    border: 2px solid #f5c987;
+    color: #ae2c24;
+    outline: none;
+}
+button:hover{
+    border: 2px solid #ae2c24;
+}
+button:active {
+    border: 2px solid #f5c987;
+    color: #f2a633;
+    background: #ae2c24;
+}
+

@@ -7,10 +7,10 @@ const CHOOSE_RECEIPT='CHOOSE_RECEIPT';
 const CREATE_RECEIPT_LIST = 'CREATE_RECEIPT_LIST';
 const DELETE_RECEIPT = 'DELETE_RECEIPT';
 
-const create_receipt_list = function (receipts) {
+const create_receipt_list = function (receiptsList) {
     return {
-        type: FIND_RECEIPT,
-        receipts: receipts,
+        type: CREATE_RECEIPT_LIST,
+        receiptsList: receiptsList,
     }
 }
 

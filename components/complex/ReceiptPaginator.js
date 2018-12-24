@@ -22,12 +22,17 @@ class ReceiptPaginator extends React.Component {
             pageSize: 5,
         };
         
-    
+        componentWillReceiveProps = (newProps) => {
+            console.log("Paginator"+this.props.receipts+" componentWillReceiveProps");
+            this.setState({receipts:newProps.receipts});
+          };
  
     componentWillMount() {
         // Устанавливаем страницы, если массив рецептов не пустой
         if (this.state.receipts && this.state.receipts.length) {
             this.setPage(this.state.initialPage);
+            this.setState(this.props.receipts);
+            console.log("props.receipts: " + this.props.receipts)
         }
     }
  
@@ -111,6 +116,7 @@ class ReceiptPaginator extends React.Component {
     render() {
         var pager = this.state.pager;
         console.log("paginator state"+ this.state);
+        console.log("paginator props"+ this.props.receipts[0]);
         console.log(pager);
         if (!pager.pages || pager.pages.length <= 1) {
             // если 1 страница - не включаем пагинацию
@@ -120,22 +126,22 @@ class ReceiptPaginator extends React.Component {
         return (
             <ul className="pagination">
             
-                <li className={pager.currentPage == 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(1)}>First</a>
+                <li className={pager.currentPage == 1 ? 'disabled' : 'page_nav'}>
+                    <a onClick={() => this.setPage(1)}>Первая</a>
                 </li>
-                <li className={pager.currentPage == 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
+                <li className={pager.currentPage == 1 ? 'disabled' : 'page_nav'}>
+                    <a onClick={() => this.setPage(pager.currentPage - 1)}>Предыдущая</a>
                 </li>
                 {pager.pages.map((page, index) =>
                     <li key={index} className={pager.currentPage == page ? 'active' : ''}>
                         <a onClick={() => this.setPage(page)}>{page}</a>
                     </li>
                 )}
-                <li className={pager.currentPage == pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
+                <li className={pager.currentPage == pager.totalPages ? 'disabled' : 'page_nav'}>
+                    <a onClick={() => this.setPage(pager.currentPage + 1)}>Следующая</a>
                 </li>
-                <li className={pager.currentPage == pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
+                <li className={pager.currentPage == pager.totalPages ? 'disabled' : 'page_nav'}>
+                    <a onClick={() => this.setPage(pager.totalPages)}>Последняя</a>
                 </li>
             </ul>
         );

@@ -25,7 +25,13 @@ module.exports = {
                 use: extractCSS.extract({
                     use: ["css-loader"]
                 })
-            }            
+            },
+            {
+                test: /\.(jpg|jpeg|gif|png|ico)$/,
+                exclude: /node_modules/,
+                loader : 'file-loader'
+               
+             }            
         ] 
     },
     plugins: [

@@ -11,6 +11,8 @@ import combinedReducer from './redux/reducers.js';
 let store=createStore(combinedReducer);
 ReactDOM.render( 
   <Provider store={store}>
+  
   <PagesRouter />
+  
 </Provider>
 , document.getElementById('container') );

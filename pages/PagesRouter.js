@@ -4,9 +4,9 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import {connect} from 'react-redux';
 import {default as isoFetch} from 'isomorphic-fetch';
-
+import './PagesRouters.css';
 import PagesLinks from './PagesLinks';
-
+import updateAJAXStorage from '../actions/actionFetch';
 import Page_ReceiptList from './Page_ReceiptList';
 import Page_ChosenReceipts from './Page_ChosenReceipts';
 import Page_Receipt from './Page_Receipt';
@@ -26,7 +26,8 @@ class PagesRouter extends React.Component{
   }
   state = { //
     dataReady: false, //готовность данных
-    receiptsList: {}, //собственно список рецептов
+    receiptsArr: {}, //собственно список рецептов
+    receiptsList: [],
   };
 
   fetchError = (errorMessage) => { //текст ошибки в консоли при проблеме с получением данных
@@ -36,13 +37,14 @@ class PagesRouter extends React.Component{
 
   fetchSuccess = (loadedData) => {
     console.log(loadedData);
-    let receiptsArr = loadedData.result;
-    // console.log(receiptsArr);
-    this.setState({
+    let receiptsArr = JSON.parse(loadedData.result);
+     console.log(receiptsArr);
+
+    this.props.dispatch( create_receipt_list(receiptsArr.receipts) );
+        this.setState({
       dataReady:true,
-      receiptsList: receiptsArr,
+      receiptsArr: receiptsArr,
     });
-    console.log(this.state);
   };
 
 loadData = () => {
@@ -82,10 +84,14 @@ loadData = () => {
     ;
 
   };
-  componentWillMount() {
-    this.props.dispatch( create_receipt_list(this.state.receiptsList) )
-    console.log(this.state.receiptsList);
-  }
+
+   componentWillReceiveProps(newProps) {
+         if (newProps.receipts != this.props.receipts) {
+          updateAJAXStorage(newProps.receipts);
+        console.log("sent: "+ newProps.receipts);
+         }             
+        
+     }
 
   render(){
 
@@ -110,7 +116,7 @@ loadData = () => {
 
 };
    const mapStateToProps = function (state) {
-     console.log(state.receipts.receipts);
+     console.log(state.receipts);
     return {
       receipts: state.receipts,
     };

@@ -3,23 +3,22 @@ import React from 'react';
 import ReceiptList from '../components/complex/ReceiptList';
 
 import {connect} from 'react-redux';
-import { create_receipt_list } from '../redux/receiptsAC';
+
 import updateAJAXStorage from '../actions/actionFetch';
 
 class Page_ReceiptList extends React.PureComponent {
 
   state = {
-    receipts: this.props.receipts.receipts
+    receipts: this.props.receipts.receipts,
   }
   
-
-
-  componentWillUpdate() {
-   updateAJAXStorage(this.props.receipts);
-   console.log("props to AJAX: "+this.props.receipts);
-    }
+  componentWillReceiveProps = (newProps) => {
+    let newReceipts=newProps.receipts.receipts;
+    console.log("ReceiptList "+this.props.heading+" componentWillReceiveProps^ ");
+    this.setState({receipts: newReceipts});
+  };
   render() {
-
+    console.log("props receipts: "+this.props.receipts);
     return (
       <ReceiptList heading = "Список рецептов" receipts = {this.state.receipts}
 

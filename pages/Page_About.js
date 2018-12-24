@@ -6,7 +6,7 @@ class Page_About extends React.PureComponent {
 
     return (
       <div>
-        <h1>About This Project</h1>
+        <h1>О проекте:</h1>
       
       </div>
     );

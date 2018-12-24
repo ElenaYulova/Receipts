@@ -18,6 +18,8 @@ class NewReceiptForm extends React.PureComponent {
         steps: "",
         imageUrl: "",
         formIsSubmitted: false,
+        dataSent: false,
+        receipts: this.props.receipts,
       };
 
 
@@ -38,10 +40,12 @@ class NewReceiptForm extends React.PureComponent {
      }
 
      receiptFormSubmit = () => {
-         
+         let receipts = this.props.receipts.receipts;
+         let i = receipts.length-1;
+        let newReceiptID = +receipts[i].id + 1;
         
         var newReceipt = {
-            
+            id: newReceiptID,
             name: this.state.name,
             description: this.state.description,
             components: this.state.components,
@@ -50,15 +54,24 @@ class NewReceiptForm extends React.PureComponent {
         };
         if (this.state.formIsValid) {
             
-            
+           
             this.props.dispatch(add_new_receipt(newReceipt));
+            
             console.log("Receipt was add");
             this.setState({formIsSubmitted: true});
+            
             
         } else {
             return console.error("При сохранении произошла ошибка")
         }
      }
+
+    //  componentWillReceiveProps(newProps) {
+                      
+    //     updateAJAXStorage(newProps.receipts);
+    //     console.log("sent: "+ newProps.receipts);
+    //     this.setState({dataSent: true});
+    //  }
      onInputChange = (EO) => {
         console.log(EO.target.id+EO.target.value);
         switch (EO.target.id) {

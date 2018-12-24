@@ -1,14 +1,18 @@
 import React from 'react';
 
 import ReceiptList from '../components/complex/ReceiptList';
-
+import updateAJAXStorage from '../actions/actionFetch';
 import {connect} from 'react-redux';
 
 class Page_ReceiptList extends React.PureComponent {
   state= {
     receipts: this.props.receipts.receipts,
   }
-
+  componentWillReceiveProps = (newProps) => {
+    let newReceipts=newProps.receipts.receipts;
+    console.log("ReceiptList "+this.props.heading+" componentWillReceiveProps^ ");
+    this.setState({receipts: newReceipts});
+  };
   render() {
     let selectedReceiptsCnt = 0;
     let selectedReceiptsList = [];
@@ -22,6 +26,7 @@ class Page_ReceiptList extends React.PureComponent {
     
   
     return ( <div>
+      
       {(selectedReceiptsCnt>0 && <ReceiptList heading = "Список избранных рецептов" receipts = {selectedReceiptsList}
  
       />) || <h2>Тут пока нет рецептов</h2>}

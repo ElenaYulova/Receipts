@@ -1,3 +1,17 @@
 a { 
     cursor: pointer; 
 }
+.pagination {
+color: #895a13;
+list-style-type: none;
+}
+
+.pagination li {
+    display:inline-block;
+    margin: 5px;
+}
+@media all and (max-width: 650px){
+    .pagination li.page_nav {
+    display:none;
+    }
+}

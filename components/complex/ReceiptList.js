@@ -8,7 +8,7 @@ import ReceiptButton from '../Primitive/ReceiptButton';
 import ReceiptInput from '../Primitive/ReceiptInput';
 import NewReceiptModal from './NewReceiptModal'
 import ReceiptPaginator from './ReceiptPaginator';
-import updateAJAXStorage from '../../actions/actionFetch';
+
 
 // Компонент Список рецептов кулинарной книги. Переиспользуемый
 export default class ReceiptList extends React.PureComponent {
@@ -38,14 +38,11 @@ export default class ReceiptList extends React.PureComponent {
 
 
       componentWillReceiveProps = (newProps) => {
-        console.log("ReceiptList "+this.props.heading+" componentWillReceiveProps");
+        console.log("ReceiptList "+this.props.heading+" componentWillReceiveProps^ " + newProps.receipts);
         this.setState({receipts:newProps.receipts});
       };
 
-    //   componentWillMount() {
-    //     updateAJAXStorage(this.props.receipts);
-    //   }
-
+    
       onChangePage(pageOfItems) {
         
         this.setState({ pageOfItems: pageOfItems });
@@ -89,18 +86,19 @@ export default class ReceiptList extends React.PureComponent {
           let buttonSearch = "Поиск";
     return <div className="receipt-receipt-list">
     <h1>{this.state.heading}</h1>
-    
+    <ReceiptButton className="new-receipt__button" title={"Добавить новый рецепт"} value="Новый рецепт" modalOpen = {this.modalOpen.bind(this)} buttonOnClick={"modal"}>Новый рецепт</ReceiptButton>
     <ReceiptInput 
+             
             name="Поиск по рецептам" 
             type="text" 
             isRequired={false}
             onInputChange = {this.onInputChange.bind(this)} 
             onEnterPressed= {this.onSearchClicked.bind(this)}/>
     <ReceiptButton onSearchClicked = {this.onSearchClicked.bind(this)} inputChangeValue= {this.state.inputChangeValue} title={buttonSearch} value = {buttonSearch} buttonOnClick={"search"} className="receipt-list-button" >Поиск</ReceiptButton>
-    <ReceiptButton title={"Добавить новый рецепт"} value="Новый рецепт" modalOpen = {this.modalOpen.bind(this)} buttonOnClick={"modal"}>Новый рецепт</ReceiptButton>
+    
     {this.state.modal && <NewReceiptModal modalOpen = {this.modalOpen.bind(this)}></NewReceiptModal>}
     {receipts}
-    <ReceiptPaginator receipts={this.props.receipts} onChangePage={ this.onChangePage.bind(this)} />
+    <ReceiptPaginator receipts={this.state.receipts} onChangePage={ this.onChangePage.bind(this)} />
     </div>
  }   
 }

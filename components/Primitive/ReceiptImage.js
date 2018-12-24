@@ -14,9 +14,10 @@ export default class ReceiptImage extends React.PureComponent {
     
     render() {
         const name = this.props.name;
-    return <div className="receipt-form-Image">
+        const imageUrl = this.props.imageUrl;
+        return <div className="receipt-form-Image">
 
-      <img url={this.props.imageUrl || "../../Images/img.jpg"} id={name}
+      <img src={imageUrl} onError={(EO)=>{EO.target.src='/Images/default.jpg'}} id={name}
         className="receipt-form-Image__Image"
         alt={name} title={name}/>
           

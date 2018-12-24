@@ -38,7 +38,7 @@ import ReceiptButton from '../Primitive/ReceiptButton';
         this.setState({receipt:newProps.receipt});
       };
       deleteReceipt = () => {
-        this.props.dispatch( delete_receipt(this.props.match.params.lid) );
+        this.props.dispatch( delete_receipt(this.props.match.params.id) );
         this.setState({
           isRemoved: true
         });
@@ -48,11 +48,12 @@ import ReceiptButton from '../Primitive/ReceiptButton';
         
         const buttonValue = (this.state.isSelected && "Убрать из избранного") || "В избранное";
     return <div className="receipt-receipt-list__item">
-    <h1>{name}</h1>
+    <h2>{name}</h2>
+    <ReceiptButton title={buttonValue} isSelected = {this.state.isSelected} receiptId={this.props.receipt.id} value = {buttonValue}  buttonOnClick="selection" className={(this.props.isSelected && "receipt-page-button__selected") || "receipt-page-button__non-selected"} name={name} >Добавить в избранное</ReceiptButton>
     <ReceiptImage className="" name={name} imageUrl={imageUrl}></ReceiptImage>
     
     <ReceiptDescription className="" description={description}></ReceiptDescription> 
-    <ReceiptButton title={buttonValue} isSelected = {this.state.isSelected} receiptId={this.props.receipt.id} value = {buttonValue}  buttonOnClick="selection" className={(this.props.isSelected && "receipt-page-button__selected") || "receipt-page-button__non-selected"} name={name} >Добавить в избранное</ReceiptButton>
+    
     <NavLink to={"/receipt/"+this.props.receipt.id} className="">{this.props.receipt.name}</NavLink>
     <ReceiptButton name={name} title={"Удалить рецепт"} receiptId={this.props.receipt.id} value = {"Удалить рецепт"}  buttonOnClick="delete" className={"receipt-page-button__non-selected"} name={name} >Удалить рецепт</ReceiptButton>
     </div>
