@@ -23,7 +23,7 @@ export default class ReceiptInput extends React.PureComponent {
     }
     onEnterPressed = (EO) => {
       if(EO.keyCode == 13){
-        console.log('value', EO.target.value);
+        // console.log('value', EO.target.value);
         // поиск по кнопке Enter
       this.props.onEnterPressed();
       }

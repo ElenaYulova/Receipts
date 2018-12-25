@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ReceiptPaginator.css';
- 
+import {connect} from 'react-redux';
  
  
 
@@ -149,4 +149,5 @@ class ReceiptPaginator extends React.Component {
 }
  
 
-export default ReceiptPaginator;
+   
+  export default ReceiptPaginator;

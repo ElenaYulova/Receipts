@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import {connect} from 'react-redux';
 
 import './ReceiptPage.css';
 import ReceiptDescription from'../Primitive/ReceiptDescription';
@@ -9,8 +9,7 @@ import ReceiptComponents from '../Primitive/ReceiptComponents';
 import ReceiptSteps from '../Primitive/ReceiptSteps';
 import ReceiptButton from '../Primitive/ReceiptButton';
 
-// Компонент Ингредиенты рецепта кулинарной книги. Переиспользуемый
-export default class ReceiptPage extends React.PureComponent {
+class ReceiptPage extends React.PureComponent {
     static propTypes = {
         receipt: PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -58,3 +57,5 @@ export default class ReceiptPage extends React.PureComponent {
     </div>
  }   
 }
+
+ export default ReceiptPage;

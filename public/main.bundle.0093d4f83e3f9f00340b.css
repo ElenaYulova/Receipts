@@ -1,0 +1,340 @@
+
+BrowserRouter {
+    
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 5px;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+div .nav_container {
+display: flex;
+padding: 0;
+
+background-color: #f5c987;
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: bold;
+text-align: center;
+
+}
+.PageLink, .ActivePageLink {
+    flex: 0 0 auto;
+    padding: 10px 10px;
+    text-decoration: none;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.PageLink:after, .ActivePageLink:after {
+    content: '';
+    width: 45px;
+    height: 95px;
+    display: block;
+    background: #fff;
+    opacity: 0.4;
+    right: -100px;
+    position: absolute;
+    top: -24px;
+    transform-origin: 0 0;
+    transform: rotate(35deg);
+    transition: all 0.5s ease;  
+}
+
+.PageLink:hover:after,  .ActivePageLink:hover:after{
+    right: 10px;   
+  }
+
+
+.PageLink {
+    color: #ae2c24;
+}
+
+.ActivePageLink {
+    color: #f2a633;
+    background-color: #ae2c24;
+}
+@media all and (max-width: 450px) {
+    div .nav_container {
+        flex-flow: column nowrap;
+		align-items: stretch;
+		height: auto;
+    }
+
+    .PageLink, .ActivePageLink {
+        border-top: 2px solid rgba(255,255,255,0.3); 
+       border-bottom: 2px solid rgba(0,0,0,0.1); 
+}
+}.receipt-receipt-list button {
+    display: inline-block;
+    background-color: #f5c987;
+}
+.receipt-receipt-list button:nth-of-type(1){
+    display:block;
+    margin: 10px 0px;
+}
+.receipt-receipt-list .receipt-form-input {
+    display: inline-block;
+}
+.receipt-receipt-list button:nth-of-type(2){
+    display:inline-block;
+    
+    margin-left: 10px;
+}
+
+.receipt-form-input label {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ae2c24;
+    font-size: 80%;
+    margin-right: 5px;
+}
+.receipt-receipt-list__item {
+    margin: 5px 0;
+    border: 2px solid #f5c987;
+    padding: 5px;
+    position: relative;
+}
+
+.receipt-receipt-list__item h2 {
+    margin: 5px 0;
+    width: 80%;
+}
+.receipt-receipt-list__item a {
+    color: #895a13;
+}
+.receipt-receipt-list__item a:visited {
+    color: #f2a633;
+}
+.receipt-receipt-list__item a:hover {
+    
+    color: #f5c987;
+}
+.receipt-receipt-list__item button:nth-of-type(1){
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+.receipt-receipt-list__item button:nth-of-type(2){
+    display:block;
+    margin: 10px 0;
+    margin-left: 0;
+    clear:both;
+    background-color: #fff;
+    
+    
+}
+
+.receipt-receipt-list__item img {
+    height: 100px;
+    float: left;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+@media all and (max-width: 640px) {
+    .receipt-receipt-list__item h2 {
+        max-width: 60%;
+        text-align: center;
+
+    }
+
+}
+
+@media all and (max-width: 450px) {
+    .receipt-receipt-list__item h2 {
+        max-width: 100%;
+        text-align: center;
+
+    }
+    .receipt-receipt-list__item button:nth-of-type(1){
+        position: relative;
+        
+        margin-left: 10px;
+    }
+} button {
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius:  0;
+    padding: 5px;
+    background: #f5c987;
+    border: 2px solid #f5c987;
+    color: #ae2c24;
+    outline: none;
+}
+button:hover{
+    border: 2px solid #ae2c24;
+}
+button:active {
+    border: 2px solid #f5c987;
+    color: #f2a633;
+    background: #ae2c24;
+}
+
+.receipt-form-input label {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #895213;
+    font-size: 80%;
+    margin-right: 5px;
+    display:block;
+    margin: 5px 0 0 0;
+    
+}
+
+input {
+    border: 1px solid #f2a633;
+    width: 200px;
+}
+input:focus {
+    border-color: #ae2c24;
+    outline: none;
+    color: #ae2c24;
+}
+.modal_container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 99999;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+}
+
+.modal {
+    
+}
+
+.modal__close {
+    color: #C0C0C0;
+  font-size: 20px;
+  text-decoration: none;
+  position: absolute;
+   right: 5px; 
+   top: 0;
+    background: #fff;
+    border: none;
+}
+
+.modal__close:hover{
+    color: #808080;
+ }.receipt-form {
+    background-color: #fff;
+    margin: 20px 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    
+}
+.receipt-form span {
+    color: #ae2c24;
+    font-size: 80%;
+    
+    display: block;
+}
+.receipt-form button {
+    display:inline-block;
+    text-align: center;
+}
+
+.receipt-form div.receipt-form-input {
+    display:block;
+}
+
+.receipt-form-input input {
+    display:block;
+    width: 80%;
+}
+.receipt-form-input input, .receipt-form-input textarea {
+    min-width: 200px;
+    max-width: 80%;
+    
+}label {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #895213;
+    font-size: 80%;
+    margin-right: 5px;
+    display:block;
+    margin: 5px 0 0 0;
+}
+
+textarea {
+    border: 1px solid #f2a633;
+    width: 200px;
+    max-width: 300px;
+    height: 50px;
+}
+textarea:focus {
+    border-color: #ae2c24;
+    outline: none;
+    color: #ae2c24;
+}
+textarea::placeholder {
+    color: #f5c987;
+}a { 
+    cursor: pointer; 
+}
+.pagination {
+color: #895a13;
+list-style-type: none;
+}
+
+.pagination li {
+    display:inline-block;
+    margin: 5px;
+}
+@media all and (max-width: 650px){
+    .pagination li.page_nav {
+    display:none;
+    }
+}.receipt-receipt-page {
+    position: relative;
+}
+.receipt-receipt-page hr {
+    color: #f2a633;
+    background-color: #f2a633;
+    height: 1px;
+    border: none;
+}
+.receipt-receipt-page button {
+    margin-bottom: 5 px;
+    position: absolute;
+    right: 0;
+    top: 68px;
+}
+
+.receipt-receipt-page img {
+    height: 200px;
+}
+
+@media all and (max-width: 640px) {
+    .receipt-receipt-page h1 {
+        text-align: center;
+        width: 60%;
+    } 
+    .receipt-receipt-page button {
+        margin-bottom: 5 px;
+        margin-top: 5px;
+        position: relative;
+
+    }
+}div {
+    box-sizing: border-box;
+    
+}
+
+h1 {
+color: #ae2c24;
+
+}
+
+h2 {
+    color:  #895213;
+}
+/*# sourceMappingURL=main.bundle.0093d4f83e3f9f00340b.css.map*/

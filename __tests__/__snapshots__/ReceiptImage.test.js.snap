@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>ReceiptImage --- Shallow Render REACT COMPONENTS renders receipt with wrong url 1`] = `
+<div
+  className="receipt-form-Image"
+>
+  <img
+    alt="name2"
+    className="receipt-form-Image__Image"
+    id="name2"
+    onError={[Function]}
+    src="2222"
+    title="name2"
+  />
+</div>
+`;
+
+exports[`>>>ReceiptImage --- Shallow Render REACT COMPONENTS renders usual receipt 1`] = `
+<div
+  className="receipt-form-Image"
+>
+  <img
+    alt="name1"
+    className="receipt-form-Image__Image"
+    id="name1"
+    onError={[Function]}
+    src="../../Images/salad-chick-q.jpg"
+    title="name1"
+  />
+</div>
+`;

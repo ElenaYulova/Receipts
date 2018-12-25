@@ -48,6 +48,7 @@ class ReceiptButton extends React.PureComponent {
             let id = this.props.receiptId;
             console.log(id);
             this.props.dispatch(delete_receipt(id));
+            this.props.deleteComponent();
             console.log("Удаление рецепта");
             break;
         }

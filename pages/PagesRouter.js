@@ -16,6 +16,7 @@ import Page_About from './Page_About';
 import combinedReducer from '../redux/reducers.js';
 
 import { create_receipt_list } from '../redux/receiptsAC';
+import { setTimeout } from 'timers';
 
 
 class PagesRouter extends React.Component{
@@ -41,10 +42,10 @@ class PagesRouter extends React.Component{
      console.log(receiptsArr);
 
     this.props.dispatch( create_receipt_list(receiptsArr.receipts) );
-        this.setState({
+        setTimeout(this.setState({
       dataReady:true,
       receiptsArr: receiptsArr,
-    });
+    }), 500);
   };
 
 loadData = () => {

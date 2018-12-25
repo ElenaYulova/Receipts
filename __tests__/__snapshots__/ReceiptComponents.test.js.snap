@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>ReceiptComponents --- Shallow Render REACT COMPONENTS renders receipt 1`] = `
+<div
+  className="receipt-components"
+>
+  <ul
+    id="name1"
+  >
+    <li>
+      sfADFASDFSA
+    </li>
+  </ul>
+</div>
+`;

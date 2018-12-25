@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>ReceiptDescription --- Shallow Render REACT COMPONENTS renders receipt 1`] = `
+<div
+  className="receipt-description"
+>
+  ADSDfvSDvsD
+</div>
+`;

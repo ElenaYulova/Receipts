@@ -10,7 +10,7 @@ import ReceiptButton from '../Primitive/ReceiptButton';
 
 
 // Компонент Строка списка рецептов кулинарной книги. Переиспользуемый
- class ReceiptListItem extends React.PureComponent {
+class ReceiptListItem extends React.PureComponent {
     static propTypes = {
         receipt: PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -32,30 +32,30 @@ import ReceiptButton from '../Primitive/ReceiptButton';
         isSelected: this.props.receipt.isSelected || false,
         isRemoved:false,
       };
-
+      deleteComponent = () => {
+          this.setState({isRemoved: true});
+      }
       componentWillReceiveProps = (newProps) => {
         console.log("ReceiptListItem id="+this.props.receipt.id+" componentWillReceiveProps");
         this.setState({receipt:newProps.receipt});
       };
-      deleteReceipt = () => {
-        this.props.dispatch( delete_receipt(this.props.match.params.id) );
-        this.setState({
-          isRemoved: true
-        });
-      }
+      
     render() {
         const {name, description, imageUrl} = this.state;
-        
         const buttonValue = (this.state.isSelected && "Убрать из избранного") || "В избранное";
-    return <div className="receipt-receipt-list__item">
-    <h2>{name}</h2>
+        const componentToMount = <div>
+            <h2>{name}</h2>
     <ReceiptButton title={buttonValue} isSelected = {this.state.isSelected} receiptId={this.props.receipt.id} value = {buttonValue}  buttonOnClick="selection" className={(this.props.isSelected && "receipt-page-button__selected") || "receipt-page-button__non-selected"} name={name} >Добавить в избранное</ReceiptButton>
     <ReceiptImage className="" name={name} imageUrl={imageUrl}></ReceiptImage>
     
     <ReceiptDescription className="" description={description}></ReceiptDescription> 
     
-    <NavLink to={"/receipt/"+this.props.receipt.id} className="">{this.props.receipt.name}</NavLink>
-    <ReceiptButton name={name} title={"Удалить рецепт"} receiptId={this.props.receipt.id} value = {"Удалить рецепт"}  buttonOnClick="delete" className={"receipt-page-button__non-selected"} name={name} >Удалить рецепт</ReceiptButton>
+    <NavLink to={"/receipt/"+this.props.receipt.id} className="" title="Перейти на страницу рецепта">{this.props.receipt.name}</NavLink>
+    <ReceiptButton name={name} title={"Удалить рецепт"} receiptId={this.props.receipt.id} value = {"Удалить рецепт"}  buttonOnClick="delete" className={"receipt-page-button__non-selected"} name={name}  deleteComponent={this.deleteComponent.bind(this)}>Удалить рецепт</ReceiptButton>
+        </div>
+        
+    return <div className="receipt-receipt-list__item">
+    {!this.state.isRemoved? componentToMount : null}
     </div>
  }  
     

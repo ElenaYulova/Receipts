@@ -77,7 +77,6 @@ export default class ReceiptList extends React.PureComponent {
             return <ReceiptListItem 
             key={receipt.id} 
             receipt={receipt}
-            receiptOnSelect={this.receiptOnSelect}
   
                />;
             }
@@ -98,7 +97,7 @@ export default class ReceiptList extends React.PureComponent {
     
     {this.state.modal && <NewReceiptModal modalOpen = {this.modalOpen.bind(this)}></NewReceiptModal>}
     {receipts}
-    <ReceiptPaginator receipts={this.state.receipts} onChangePage={ this.onChangePage.bind(this)} />
+    <ReceiptPaginator receipts={this.props.receipts} onChangePage={ this.onChangePage.bind(this)} />
     </div>
  }   
 }

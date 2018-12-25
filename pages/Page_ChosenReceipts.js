@@ -1,10 +1,10 @@
 import React from 'react';
 
 import ReceiptList from '../components/complex/ReceiptList';
-import updateAJAXStorage from '../actions/actionFetch';
+// import updateAJAXStorage from '../actions/actionFetch';
 import {connect} from 'react-redux';
 
-class Page_ReceiptList extends React.PureComponent {
+class Page_ReceiptList extends React.Component {
   state= {
     receipts: this.props.receipts.receipts,
   }

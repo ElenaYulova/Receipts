@@ -18,7 +18,7 @@ class NewReceiptForm extends React.PureComponent {
         steps: "",
         imageUrl: "",
         formIsSubmitted: false,
-        dataSent: false,
+        
         receipts: this.props.receipts,
       };
 
@@ -66,14 +66,8 @@ class NewReceiptForm extends React.PureComponent {
         }
      }
 
-    //  componentWillReceiveProps(newProps) {
-                      
-    //     updateAJAXStorage(newProps.receipts);
-    //     console.log("sent: "+ newProps.receipts);
-    //     this.setState({dataSent: true});
-    //  }
      onInputChange = (EO) => {
-        console.log(EO.target.id+EO.target.value);
+        // console.log(EO.target.id+EO.target.value);
         switch (EO.target.id) {
             case "name": {
                 this.validation();
